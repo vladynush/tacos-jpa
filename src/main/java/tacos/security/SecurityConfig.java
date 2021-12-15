@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/design", "/orders")
+                .antMatchers("/design**", "/orders**")
                 .access("hasRole('ROLE_USER')")
                 .antMatchers("/", "/**").access("permitAll")
 
@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // Make H2-Console non-secured; for debug purposes
                 .and()
                 .csrf()
-                .ignoringAntMatchers("/h2-console/**")
+                .ignoringAntMatchers("/h2/**")
 
                 // Allow pages to be loaded in frames from the same origin; needed for H2-Console
                 .and()

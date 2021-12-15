@@ -78,12 +78,12 @@ public class DesignTacoController {
             @Valid Taco taco, Errors errors,
             @ModelAttribute Order order) {
 
-        log.info("   --- Saving taco");
-
         if (errors.hasErrors()) {
+            log.info("   --- Saving taco error");
             return "design";
         }
 
+        log.info("   --- Saving taco");
         Taco saved = tacoRepo.save(taco);
         order.addDesign(saved);
 
